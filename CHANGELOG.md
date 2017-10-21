@@ -1,7 +1,9 @@
 # mapfiles branch / Unreleased
-  * [Improved] #781 import dist/jquery.fancytree-all-deps.min.js by default
   * [Added] Source Map file for jquery.fancytree-all-deps.js
+  * [Improved] #781 import dist/jquery.fancytree-all-deps.min.js by default
   * [Changed] `npm install jquery.fancytree` no longer installs unnecessary files
+    (only dist/ folder)
+  * [Added] Support for Node/CommonJS
 
 # 2.24.1 / Unreleased
   *
