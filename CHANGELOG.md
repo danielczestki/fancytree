@@ -1,3 +1,6 @@
+# mapfiles branch / Unreleased
+  * [Improved] #781 import dist/jquery.fancytree-all-deps.min.js by default
+
 # 2.24.1 / Unreleased
   *
 
