@@ -17,13 +17,13 @@ module.exports = (grunt) ->
 
     # Project metadata, used by the <banner> directive.
     meta:
-        # banner: "/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - " +
         banner: "/*! <%= pkg.title || pkg.name %> - @VERSION - @DATE\n" +
                 # "<%= grunt.template.today('yyyy-mm-dd HH:mm') %>\n" +
                 "<%= pkg.homepage ? '  * ' + pkg.homepage + '\\n' : '' %>" +
                 "  * Copyright (c) <%= grunt.template.today('yyyy') %> <%= pkg.author.name %>;" +
                 " Licensed <%= _.map(pkg.licenses, 'type').join(', ') %>\n" +
                 " */\n"
+        # separator: "\n/*! --- Fancytree Plugin --- */\n"
 
     clean:
         build:
@@ -171,7 +171,9 @@ module.exports = (grunt) ->
                   return src
             src: [
                 "<%= meta.banner %>"
+                # jQuery UI custom (AMD header removed; IIFE only)
                 "src/jquery-ui-dependencies/jquery-ui.js"
+                # Fancytree core and extensions, wrapped in UMD pattern
                 "lib/intro-all-deps.js"
                 "src/jquery.fancytree.js"
 #                "build/jquery.fancytree.ariagrid.js"
@@ -340,6 +342,9 @@ module.exports = (grunt) ->
             "test/unit/test-ext-filter.html"
             "test/unit/test-ext-table.html"
             "test/unit/test-ext-misc.html"
+        ]
+        dist: [
+            "test/unit/test-core-dist.html"
         ]
 
     replace: # grunt-text-replace
@@ -560,7 +565,8 @@ module.exports = (grunt) ->
       "copy:dist"
       "clean:build"
       "replace:release"
-      # "compress:dist"
+      # "jshint:dist"  # should rather use grunt-jsvalidate for minified output
+      "qunit:dist"
       ]
 
   grunt.registerTask "upload", [
